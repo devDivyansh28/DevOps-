@@ -37,11 +37,14 @@ jobs:
                 username: ubuntu
                 key: ${{ secrets.PRIVATE_KEY}}
                 script: |
-                    export NVM_DIR="$HOME/.nvm"
-                    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+                   #Kill the existing docker container
+                   sudo docker rm -f devops-first || true
 
-                    cd /home/ubuntu/DevOps-
-                    git pull
-                    npm install
-                    pm2 start index.js
-                    pm2 restart 0
+                   #Again pull the latest image from Docker Hub
+                    sudodocker pull divyansh576dev/devops-first
+
+                   #Run the container -d -p 8000:8000  divyansh576dev/devops-first
+                     sudo docker run -d -p 8000:8000 --name devops-first divyansh576dev/devops-first
+
+                    #clenan up the unused images
+                        sudo docker image prune -f
