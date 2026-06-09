@@ -43,7 +43,7 @@ jobs:
                    #Again pull the latest image from Docker Hub
                     sudo docker pull divyansh576dev/devops-first
 
-                   #Run the container -d -p 8000:8000  divyansh576dev/devops-first
+                   #Run the container -d -p 80:8000  divyansh576dev/devops-first
                    sudo docker run -d -p 8000:8000 --name devops-first divyansh576dev/devops-first
 
                     #clenan up the unused images
