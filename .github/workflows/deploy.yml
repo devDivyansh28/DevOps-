@@ -37,14 +37,17 @@ jobs:
                 username: ubuntu
                 key: ${{ secrets.PRIVATE_KEY}}
                 script: |
-                   #Kill the existing docker container
-                   sudo docker rm -f devops-first || true
+                  # CD into /home/ubuntu/DevOps-
+                    cd /home/ubuntu/DevOps-
 
-                   #Again pull the latest image from Docker Hub
-                    sudo docker pull divyansh576dev/devops-first
+                  # git pull
+                   git pull origin main
 
-                   #Run the container -d -p 80:8000  divyansh576dev/devops-first
-                   sudo docker run -d -p 80:8000 --name devops-first divyansh576dev/devops-first
+                  # make sure to pull a fresh copy of push divyansh576dev/devops-first
+                   sudo docker-compose pull
 
-                    #clenan up the unused images
-                    sudo docker image prune -f
+                  # docker compose u- -d
+                   sudo docker-compose up -d
+
+                  # Clean up old/unused images
+                   sudo docker image prune -f

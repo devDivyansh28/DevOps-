@@ -1,0 +1,17 @@
+services:
+  nodejs-server:
+    image: divyansh576dev/devops-first
+    deploy:
+     replicas: 5
+    networks:
+      - devDivyansh-internal
+  caddy:
+    image: caddy:latest
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    networks:
+      - devDivyansh-internal
+
+networks:
+ devDivyansh-internal:
+  driver: bridge
